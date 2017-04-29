@@ -17,20 +17,21 @@ function copySingleFile (src, dest, newFileName) {
 
 export function copyFiles (src, dest, files, cb) {
 
-  cb(`Starting async copy process for ${files.length} file(s): ${files}`)
+  cb(`Starting copy process`);
+  cb(`Starting async copy process for ${files.length} file(s): ${files}`);
   let promise = new Promise((resolve, reject) => {
 
     Promise.each(files, file => {
       // TODO change to match more files
-      let wildcard = path.join(src, '**', `${file}.*`)
+      let wildcard = path.join(src, '**', `${file}.*`);
 
       return new promisifiedGlob(wildcard, {})
         .then(matchingFiles => {
           return Promise
             .filter(matchingFiles, matchingFile => !R.test(new RegExp(dest), matchingFile))
             .then(matchingFiles => {
-              cb(`Start processing input file ${file}`)
-              cb(`Found ${matchingFiles.length} matching file(s) : ${matchingFiles}`)
+              cb(`Start processing input file ${file}`);
+              cb(`Found ${matchingFiles.length} matching file(s) : ${matchingFiles}`);
               return matchingFiles;
             })
             .each(fileToCopy => {
@@ -48,13 +49,13 @@ export function copyFiles (src, dest, files, cb) {
     })
     .then(data => resolve())
     .catch(err => {
-      cb('Parent process ERROR')
-      reject(err)
+      cb('Parent process ERROR');
+      reject(err);
     });
   })
   .then(data => cb('Copy process terminated succesfully'))
   .catch(err => cb('Copy process terminated with ERROR'))
-  .finally(() => cb('Shutting system down'));
+  .finally(() => cb('Shutting system down\n\n'));
 
   return promise;
 }

@@ -1,0 +1,11 @@
+.container {
+  display: block;
+  color: white;
+  line-height: normal;
+  text-overflow: clip;
+  padding: 1rem;
+}
+
+.inner {
+  background: black;
+}
