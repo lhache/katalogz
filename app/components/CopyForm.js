@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import R from 'ramda';
-import {copyFiles} from '../utils/fsHelpers';
+import { copyFiles } from '../scripts/copy';
 import MessageConsole from './MessageConsole';
 import styles from './CopyForm.css';
 
 export default class CopyForm extends Component {
 
   state = {
-    srcFolder: "",
-    destFolder: "",
-    items: ['XKCD', 'XKCE'],
+    srcFolder: '',
+    destFolder: '',
+    files: ['XKCD', 'XKCE'],
+    fileInputField: 'XKCD,XKCE',
     messages: []
   }
   // lifecycle hooks
@@ -32,9 +33,8 @@ export default class CopyForm extends Component {
     event.preventDefault();
     this.resetMessages();
     setTimeout(() => {
-      copyFiles(this.state.srcFolder, this.state.destFolder, this.state.items, this.stackMessage);
-    }, 100)
-
+      copyFiles(this.state.srcFolder, this.state.destFolder, this.state.files, this.stackMessage);
+    }, 100);
   }
 
   resetMessages = () => {
@@ -55,66 +55,71 @@ export default class CopyForm extends Component {
 
   handleChange = (event) => {
     const target = event.target;
-    let value = target.value;
+    const value = target.value;
     const name = target.name;
 
     // input type=file will return a fake path so get the right one
     // https://github.com/electron/electron/issues/2480
     if (name === 'srcFolder' || name === 'destFolder') {
-      value = target.files[0].path;
+      this.setState({
+        [name]: R.head(target.files).path
+      });
     }
-    else if (name === 'items') {
-      value = value.split(',').map(item => item.trim())
+    else if (name === 'fileInputField') {
+      this.setState({
+        [name]: value,
+        files: R.map(R.trim, R.split(',', value)).filter(item => item !== '')
+      });
     }
-
-    this.setState({
-      [name]: value
-    });
   }
 
   render() {
     return (
       <div>
-        <form onSubmit={this.onSubmit }>
-          <section>
-              <label>
-                <p>Select destination folder (most likely your dropbox)</p>
-                <input
-                  onChange={ this.handleChange }
-                  name="srcFolder"
-                  ref="SourceFolder"
-                  type="file"
-                  required
-                />
-              </label>
-            </section>
+        <div className={styles.formContainer}>
+          <form onSubmit={this.onSubmit}>
             <section>
-              <label>
-                <p>Select destination folder (your new catalog folder)</p>
-                <input
-                  onChange={ this.handleChange }
-                  name="destFolder"
-                  type="file"
-                  ref="DestFolder"
-                  required
-                />
-              </label>
-            </section>
-            <section>
-              <label>
-                <p>Paste product IDs (single one or comma separated like ABCD, BCDE)</p>
-                <textarea
-                  value={this.state.items}
-                  name="items"
-                  onChange={this.handleChange}
-                  required
-                />
-              </label>
-            </section>
+                <label>
+                  <p>Select destination folder (most likely your dropbox)</p>
+                  <input
+                    onChange={this.handleChange}
+                    name="srcFolder"
+                    ref="SourceFolder"
+                    type="file"
+                    required
+                  />
+                </label>
+              </section>
+              <section>
+                <label>
+                  <p>Select destination folder (your new catalog folder)</p>
+                  <input
+                    onChange={this.handleChange}
+                    name="destFolder"
+                    type="file"
+                    ref="DestFolder"
+                    required
+                  />
+                </label>
+              </section>
+              <section>
+                <label>
+                  <p>Paste product IDs (single one or comma separated like ABCD, BCDE)</p>
+                  <textarea
+                    value={this.state.fileInputField}
+                    name="fileInputField"
+                    onChange={this.handleChange}
+                    required
+                  />
+                </label>
+              </section>
 
-          <button type="submit">Submit</button>
-        </form>
-        <MessageConsole messages={this.state.messages} />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+        <div className={styles.consoleContainer}>
+          <MessageConsole messages={this.state.messages} />
+        </div>
       </div>
     )
   }
