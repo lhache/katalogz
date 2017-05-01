@@ -27,7 +27,7 @@
         // TODO change to match more files
         const wildcard = path.join(src, '**', `${file}.*`);
 
-        return new promisifiedGlob(wildcard, {})
+        return new PromisifiedGlob(wildcard, {})
           .then(matchingFiles => {
             return Promise
               .filter(matchingFiles, matchingFile => !R.test(new RegExp(dest), matchingFile))
