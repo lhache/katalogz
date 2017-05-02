@@ -2,10 +2,25 @@
   display: block;
   color: white;
   line-height: normal;
-  text-overflow: clip;
-  padding: 1rem;
+  word-wrap: break-word;
+  background: black;
+  height: 100%;
+  font-family: 'VT323', monospace;
+  border: 1px solid white;
 }
 
-.inner {
-  background: black;
+.consoleHeader {
+  padding: 5px 10px;
+  font-size: 18px;
+  display: block;
+  border: 1px solid white;
+  height: 30px;
+}
+.messageList {
+  padding: 1.5rem;
+  display: block;
+  height: 94%;
+  overflow-y: scroll;
+  font-size: 16px;
+  line-height: 1.4rem;
 }

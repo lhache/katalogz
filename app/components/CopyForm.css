@@ -1,4 +1,59 @@
 .formContainer, .consoleContainer {
   display: inline-block;
+  height: 500px;
   width: 50%;
+  margin-top: 60px;
+  padding: 0 20px;
+}
+
+.formContainer {
+  float: left;
+}
+
+.consoleContainer {
+  float: right;
+}
+
+form {
+  background: white;
+  height: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.inputSection {
+  padding: 20px 10px;
+  width: 100%;
+}
+
+.inputSection:first-child {
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.inputSection:last-child {
+  text-align: right;
+}
+
+.inputLabel, .textarea {
+  width: 100%;
+}
+
+button {
+  width: 130px;
+  padding: 8px 5px;
+  border-radius: 4px;
+  background-color: #39D2B4;
+  color: white;
+  cursor: pointer;
+  border-color: transparent;
+  font-size: 16px;
+  outline: none;
+}
+
+button:hover {
+  background-color: #34495E;
+  color: #39D2B4;
 }

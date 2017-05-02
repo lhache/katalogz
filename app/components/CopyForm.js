@@ -78,8 +78,11 @@ export default class CopyForm extends Component {
       <div>
         <div className={styles.formContainer}>
           <form onSubmit={this.onSubmit}>
-            <section>
-                <label>
+            <section className={styles.inputSection}>
+              <h4>FILE COPY SYSTEM</h4>
+            </section>
+            <section className={styles.inputSection}>
+                <label className={styles.inputLabel}>
                   <p>Select destination folder (most likely your dropbox)</p>
                   <input
                     onChange={this.handleChange}
@@ -90,8 +93,8 @@ export default class CopyForm extends Component {
                   />
                 </label>
               </section>
-              <section>
-                <label>
+              <section className={styles.inputSection}>
+                <label className={styles.inputLabel}>
                   <p>Select destination folder (your new catalog folder)</p>
                   <input
                     onChange={this.handleChange}
@@ -102,10 +105,11 @@ export default class CopyForm extends Component {
                   />
                 </label>
               </section>
-              <section>
-                <label>
-                  <p>Paste product IDs (single one or comma separated like ABCD, BCDE)</p>
+              <section className={styles.inputSection}>
+                <label className={styles.inputLabel}>
+                  <p>Paste product IDs (comma separated)</p>
                   <textarea
+                    className={styles.textarea}
                     value={this.state.fileInputField}
                     name="fileInputField"
                     onChange={this.handleChange}
@@ -113,8 +117,9 @@ export default class CopyForm extends Component {
                   />
                 </label>
               </section>
-
-            <button type="submit">Submit</button>
+              <section className={styles.inputSection}>
+                <button type="submit">Submit</button>
+              </section>
           </form>
         </div>
         <div className={styles.consoleContainer}>

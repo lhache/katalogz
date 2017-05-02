@@ -9,3 +9,12 @@
 .container a {
   font-size: 1.4rem;
 }
+
+.logoHolder {
+  margin: 0 auto;
+  text-align: center;
+}
+
+img {
+  width: 100px;
+}
