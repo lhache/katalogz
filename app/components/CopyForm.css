@@ -20,6 +20,7 @@ form {
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 20px;
+  color: #34495E;
 }
 
 .inputSection {
@@ -39,6 +40,7 @@ form {
 
 .inputLabel, .textarea {
   width: 100%;
+  border-radius: 4px;
 }
 
 button {
@@ -56,4 +58,8 @@ button {
 button:hover {
   background-color: #34495E;
   color: #39D2B4;
+}
+
+input, textarea {
+  color: #aaa;
 }
