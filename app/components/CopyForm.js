@@ -9,8 +9,8 @@ export default class CopyForm extends Component {
   state = {
     srcFolder: '',
     destFolder: '',
-    files: ['XKCD', 'XKCE'],
-    fileInputField: 'XKCD,XKCE',
+    files: [],
+    fileInputField: '',
     messages: []
   }
   // lifecycle hooks
@@ -79,7 +79,7 @@ export default class CopyForm extends Component {
         <div className={styles.formContainer}>
           <form onSubmit={this.onSubmit}>
             <section className={styles.inputSection}>
-              <h4>FILE COPY SYSTEM</h4>
+              <h4>KATALOGZ MAKER</h4>
             </section>
             <section className={styles.inputSection}>
                 <label className={styles.inputLabel}>
