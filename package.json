@@ -1,5 +1,5 @@
 {
-  "name": "electron-react-boilerplate",
+  "name": "Katalogz",
   "productName": "ElectronReact",
   "version": "0.11.0",
   "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",

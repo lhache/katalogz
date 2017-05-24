@@ -6,6 +6,13 @@ import styles from './CopyForm.css';
 
 export default class CopyForm extends Component {
 
+  // state = {
+  //   srcFolder: "/Users/h/workspace/ekus/copy",
+  //   destFolder: "/Users/h/workspace/untitled folder",
+  //   files: ['14', '13'],
+  //   fileInputField: '14, 13',
+  //   messages: []
+  // }
   state = {
     srcFolder: '',
     destFolder: '',
@@ -83,42 +90,45 @@ export default class CopyForm extends Component {
             </section>
             <section className={styles.inputSection}>
                 <label className={styles.inputLabel}>
-                  <p>Select destination folder (most likely your dropbox)</p>
+                  <p>Source folder (most likely your dropbox)</p>
                   <input
                     onChange={this.handleChange}
                     name="srcFolder"
                     ref="SourceFolder"
                     type="file"
+                    tabIndex="1"
                     required
                   />
                 </label>
               </section>
               <section className={styles.inputSection}>
                 <label className={styles.inputLabel}>
-                  <p>Select destination folder (your new catalog folder)</p>
+                  <p>Destination folder (your new catalog folder)</p>
                   <input
                     onChange={this.handleChange}
                     name="destFolder"
                     type="file"
                     ref="DestFolder"
+                    tabIndex="2"
                     required
                   />
                 </label>
               </section>
               <section className={styles.inputSection}>
                 <label className={styles.inputLabel}>
-                  <p>Paste product IDs (comma separated)</p>
+                  <p>Product IDs (comma separated)</p>
                   <textarea
                     className={styles.textarea}
                     value={this.state.fileInputField}
                     name="fileInputField"
                     onChange={this.handleChange}
+                    tabIndex="3"
                     required
                   />
                 </label>
               </section>
               <section className={styles.inputSection}>
-                <button type="submit">Submit</button>
+                <button type="submit" tabIndex="4">Submit</button>
               </section>
           </form>
         </div>

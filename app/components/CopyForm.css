@@ -60,6 +60,10 @@ button:hover {
   color: #39D2B4;
 }
 
+button:focus {
+  box-shadow: 1px 1px #34495E;
+}
+
 input, textarea {
   color: #aaa;
 }
