@@ -1,7 +1,7 @@
 # Katalogz
 Node/React/Electron-based file copier
 
-![Katalogz](https://raw.githubusercontent.com/lhache/katalogz/images/screenshot_readme.png)
+![Katalogz](https://raw.githubusercontent.com/lhache/katalogz/images/readme_screenshot.png)
 
 ## Notes
 * Boilerplate based on [electron-react-boilerplate](https://github.com/chentsulin/react-electron-boilerplate)
