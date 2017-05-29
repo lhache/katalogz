@@ -8,7 +8,6 @@ const fs = Promise.promisifyAll(require('fs'));
 const fseCopy = Promise.promisify(fse.copy);
 const PromisifiedGlob = Promise.promisify(glob);
 
-
 function copySingleFile(src, dest, newFileName) {
   const promise = fseCopy(src, path.join(dest, newFileName));
   return promise;
@@ -51,17 +50,6 @@ export function copyFiles(src, dest, files, cb) {
               cb(`Start processing input file ${file}`);
               cb(`Found ${matchingFiles.length} matching file(s) : ${matchingFiles}`);
               return matchingFiles;
-            })
-            .filter(matchingFile => {
-              // remove files with the term 'copy' in the name
-              if (/copy/i.test(matchingFile)) {
-                cb(`Decided not to process following file: ${matchingFile}`);
-                return false;
-              } else {
-                return true;
-              }
-
-
             })
             .each(fileToCopy => {
               const fileName = R.last(fileToCopy.split('/'));
