@@ -12,7 +12,7 @@ With
 * x = reference 
 * y = number from 0 to 9
 *  Q = quality (caps) from A to G
- * q = quality (min) from a to g
+* q = quality (min) from a to g
 
 Match
 * xq.jpg          [xa.jpg ... xg.jpg]
