@@ -9,10 +9,10 @@ Node/React/Electron-based file copier
 ## File specs
 
 With
-x = reference 
-y = number from 0 to 9
- Q = quality (caps) from A to G
- q = quality (min) from a to g
+* x = reference 
+* y = number from 0 to 9
+*  Q = quality (caps) from A to G
+ * q = quality (min) from a to g
 
 Match
 * xq.jpg          [xa.jpg ... xg.jpg]
@@ -24,6 +24,7 @@ Match
 * xBis.q.jpg      [xBis.a.jpg ... xBis.g.jpg]
 
 The reg exp looks like `${file}?(?|?(|Bis|A|B|C|D|E|G).??(|.?)).+(jpg|jpeg|JPG|JPEG)` (js string)
+
 Check [node-glob specs](https://github.com/isaacs/node-glob)
 
 ## Dependencies
