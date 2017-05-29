@@ -4,7 +4,6 @@
     "sourceType": "module",
     "allowImportExportEverywhere": true
   },
-  "extends": "airbnb",
   "env": {
     "browser": true,
     "node": true
