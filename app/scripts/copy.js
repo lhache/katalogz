@@ -35,7 +35,8 @@ export function copyFiles(src, dest, files, cb) {
   cb(`Starting async copy process for ${files.length} file(s): ${files}`);
 
   const promise = new Promise((resolve, reject) => {
-    let counter = 0;
+    let copyCounter = 0,
+        missingRefs = [];
 
     Promise.each(files, file => {
 
@@ -48,7 +49,16 @@ export function copyFiles(src, dest, files, cb) {
             .filter(matchingFiles, matchingFile => !R.test(new RegExp(dest), matchingFile)) // don't copy from subfolder
             .then(matchingFiles => {
               cb(`Start processing input file ${file}`);
-              cb(`Found ${matchingFiles.length} matching file(s) : ${matchingFiles}`);
+
+              if (matchingFiles.length) {
+                cb(`Found ${matchingFiles.length} matching file(s) : ${matchingFiles}`);
+              }
+              else {
+                // we store that to show users all the missing refs
+                cb(`No matching file found for ${file}`);
+                missingRefs.push(file);
+              }
+
               return matchingFiles;
             })
             .each(fileToCopy => {
@@ -56,21 +66,21 @@ export function copyFiles(src, dest, files, cb) {
 
               return copySingleFile(fileToCopy, dest, fileName)
                 .then(data => {
-                  counter++;
+                  copyCounter++;
                   cb('Done copying ' + fileName)
                 })
                 .catch(err => cb('ERROR copying ' + fileName))
             })
             .then(data => cb(`Done processing input file ${file}`))
             .catch(err => {
-              debugger;
               console.error(err)
               cb(`Error processing input file ${file} - ${err}`)
             })
           });
     })
     .then(data => {
-      cb(`A total of ${counter} file(s) have been copied`);
+      cb(`A total of ${copyCounter} file(s) have been copied`);
+      cb(`Missing refs: ${missingRefs.join(', ')}`);
       resolve();
     })
     .catch(err => {
